@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://doho5br15680f"]
+
+[ext_resource type="Shader" path="res://tt.gdshader" id="1_w3cau"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ncqgv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0rqmu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw6pe"]
+render_priority = 0
+shader = ExtResource("1_w3cau")
+shader_parameter/GLOW_COLOR = Vector3(1, 1, 1)
+shader_parameter/GLOW_STRENGTH = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_adccw"]
+material = SubResource("ShaderMaterial_rw6pe")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 5.814, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ncqgv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(5.2643, 0, 0, 0, 0.384199, 0, 0, 0, 2.10849, 2, 1.03199, 0)
+mesh = SubResource("BoxMesh_0rqmu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(0.499999, 0, 0, 0, 0.3, 0, 0, 0, 0.6, 0.2, -0.41, 0)
+mesh = SubResource("BoxMesh_adccw")

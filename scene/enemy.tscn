@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://csbggi6yuhr3q"]
+
+[ext_resource type="Texture2D" uid="uid://cm5m7nr7dugjd" path="res://textures/grids/Purple/texture_09.png" id="1_fitvx"]
+[ext_resource type="Script" path="res://script/enemy.gd" id="1_sxl46"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gj6qt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6aygq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0xtu"]
+specular_mode = 2
+albedo_texture = ExtResource("1_fitvx")
+uv1_scale = Vector3(3, 3, 3)
+
+[node name="enemy" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_sxl46")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gj6qt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6aygq")
+surface_material_override/0 = SubResource("StandardMaterial3D_l0xtu")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

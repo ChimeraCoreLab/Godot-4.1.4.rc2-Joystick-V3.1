@@ -1,0 +1,245 @@
+[gd_scene load_steps=30 format=3 uid="uid://c0jdxppjvbh24"]
+
+[ext_resource type="Environment" uid="uid://byrgfj7l6n2b1" path="res://default_env.tres" id="1_nu5l0"]
+[ext_resource type="PackedScene" uid="uid://kicjwmh02uwf" path="res://scenes/player.tscn" id="3_bryoi"]
+[ext_resource type="Script" path="res://scenes/Node3D.gd" id="3_uas65"]
+[ext_resource type="Texture2D" uid="uid://d2l3i4upetgdf" path="res://textures/display/jump/normal.png" id="4_1qc22"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="4_mi3wr"]
+[ext_resource type="Script" path="res://scenes/footstep2.gd" id="4_ssqso"]
+[ext_resource type="Texture2D" uid="uid://wo5jys3mruns" path="res://textures/display/jump/pressed.png" id="5_6m6k1"]
+[ext_resource type="Texture2D" uid="uid://1t8qkmk14l60" path="res://textures/display/run/pressed.png" id="6_qwdtu"]
+[ext_resource type="Texture2D" uid="uid://bm30au8mjfc2f" path="res://joystick/textures/joystick_base_outline.png" id="7_bwarj"]
+[ext_resource type="Texture2D" uid="uid://b41n1gpb23rko" path="res://Ground068_2K-JPG/Ground068_2K-JPG_Color.jpg" id="8_ttkwn"]
+[ext_resource type="Texture2D" uid="uid://cisuswifrymcw" path="res://Ground068_2K-JPG/Ground068_2K-JPG_AmbientOcclusion.jpg" id="9_38qgp"]
+[ext_resource type="Texture2D" uid="uid://ccbihlgl7bxh3" path="res://Ground068_2K-JPG/Ground068_2K-JPG_Roughness.jpg" id="11_h0f8r"]
+[ext_resource type="AudioStream" uid="uid://bkgsnuipxv448" path="res://player/footstep_sound/footstep2.wav" id="14_ekukg"]
+[ext_resource type="PackedScene" uid="uid://djuta04384rfp" path="res://node_kd3d.tscn" id="15_04b20"]
+[ext_resource type="PackedScene" uid="uid://tq1jmh7au7vg" path="res://tree.tscn" id="15_ws433"]
+[ext_resource type="Texture2D" uid="uid://dpgtgtj7ly5s6" path="res://Ground054_2K-JPG/Ground054_2K-JPG_Color.jpg" id="16_bntw2"]
+[ext_resource type="Texture2D" uid="uid://xub4rte5you4" path="res://Ground054_2K-JPG/Ground054_2K-JPG_AmbientOcclusion.jpg" id="17_jhx71"]
+[ext_resource type="Texture2D" uid="uid://fn248hkwglg1" path="res://Ground054_2K-JPG/Ground054_2K-JPG_Roughness.jpg" id="18_tmb57"]
+[ext_resource type="PackedScene" uid="uid://doho5br15680f" path="res://l.tscn" id="19_kjuno"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3p1i7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_i24gl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x0xxb"]
+load_path = "res://.godot/imported/pressed.png-b97d3a3dcbc3de6b5c284c84c5479ecc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqqtl"]
+albedo_texture = ExtResource("8_ttkwn")
+metallic = 0.5
+roughness_texture = ExtResource("11_h0f8r")
+clearcoat_roughness = 0.0
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("9_38qgp")
+refraction_enabled = true
+uv1_scale = Vector3(500, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d3q1l"]
+material = SubResource("StandardMaterial3D_nqqtl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fndao"]
+
+[sub_resource type="Animation" id="Animation_ieev2"]
+resource_name = "new_animation"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Node3D/footstep2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player/Node3D/footstep2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("14_ekukg")
+}],
+"times": PackedFloat32Array(0.2, 0.3)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6qeru"]
+_data = {
+"new_animation": SubResource("Animation_ieev2")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2gax"]
+albedo_texture = ExtResource("16_bntw2")
+metallic = 0.75
+roughness_texture = ExtResource("18_tmb57")
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("17_jhx71")
+uv1_scale = Vector3(50, 1.989, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6md5g"]
+material = SubResource("StandardMaterial3D_o2gax")
+
+[node name="World" type="Node3D"]
+
+[node name="Enviroment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = ExtResource("1_nu5l0")
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(0.813152, 0.411573, -0.411573, 0, 0.707107, 0.707107, 0.582052, -0.574985, 0.574985, 0, 1.83745, 1.83137)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("3_bryoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/StandingCollisionShape" index="0"]
+mesh = SubResource("CapsuleMesh_3p1i7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CrouchingCollisionShape" index="0"]
+visible = false
+mesh = SubResource("SphereMesh_i24gl")
+
+[node name="Node3D" type="Node3D" parent="Player"]
+script = ExtResource("3_uas65")
+
+[node name="footstep2" type="AudioStreamPlayer3D" parent="Player/Node3D"]
+script = ExtResource("4_ssqso")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_right = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JumpBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2(1912, 640)
+scale = Vector2(0.09, 0.09)
+texture_normal = ExtResource("4_1qc22")
+texture_pressed = ExtResource("5_6m6k1")
+
+[node name="RunBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2(1832, 488)
+scale = Vector2(0.1125, 0.1075)
+texture_normal = SubResource("CompressedTexture2D_x0xxb")
+texture_pressed = ExtResource("6_qwdtu")
+passby_press = true
+
+[node name="crouch" type="TouchScreenButton" parent="UI"]
+position = Vector2(2048, 528)
+scale = Vector2(0.52, 0.56)
+texture_normal = ExtResource("7_bwarj")
+
+[node name="Label" type="Label" parent="UI/crouch"]
+offset_left = 46.1541
+offset_top = 57.1428
+offset_right = 99.1541
+offset_bottom = 83.1428
+scale = Vector2(2.374, 2.374)
+text = "crouch"
+
+[node name="Virtual Joystick" parent="UI" instance=ExtResource("4_mi3wr")]
+layout_mode = 1
+offset_left = 8.0
+offset_top = -344.0
+offset_right = 308.0
+offset_bottom = -44.0
+
+[node name="freelook" type="TouchScreenButton" parent="UI"]
+position = Vector2(1784, 336)
+scale = Vector2(0.64, 0.6)
+texture_normal = ExtResource("7_bwarj")
+
+[node name="Label" type="Label" parent="UI/freelook"]
+visible = false
+anchors_preset = -1
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 0.6
+offset_left = 37.5
+offset_top = -13.3333
+offset_right = -97.5
+offset_bottom = -27.3334
+scale = Vector2(2.12, 2.12)
+text = "freelook"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="light" type="TouchScreenButton" parent="UI"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1694.49, 0, 0, 0, 0.201318, 0, 0, 0, 6.75174, 0, -0.451797, 0)
+mesh = SubResource("BoxMesh_d3q1l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_fndao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6qeru")
+}
+
+[node name="Node3D2" parent="." instance=ExtResource("15_04b20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0, 0)
+
+[node name="Node3D9" parent="Node3D2" instance=ExtResource("15_04b20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -220, 0, 0)
+
+[node name="Node3D3" parent="." instance=ExtResource("15_04b20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0.02, -5.982)
+
+[node name="Node3D9" parent="Node3D3" instance=ExtResource("15_04b20")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -220, 0, 0)
+
+[node name="Node3D" parent="." instance=ExtResource("15_ws433")]
+transform = Transform3D(7.866, 0, 0, 0, 7.866, 0, 0, 0, 7.866, 4, 8, 6)
+
+[node name="Node3D4" parent="." instance=ExtResource("15_ws433")]
+transform = Transform3D(5.5621, 0, -5.56211, 0, 7.866, 0, 5.56211, 0, 5.5621, 19, 8, 6)
+
+[node name="Node3D5" parent="." instance=ExtResource("15_ws433")]
+transform = Transform3D(3.933, 0, -6.81216, 0, 7.866, 0, 6.81216, 0, 3.933, 23, 8, -5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(82.8828, 0, 0, 0, 0.965926, -1.14294, 0, 0.258819, 4.26553, 0.103, -1.48, 7.587)
+mesh = SubResource("PlaneMesh_6md5g")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-82.8828, -2.26267e-08, -3.72904e-07, 0, 0.965926, -1.14294, 7.24584e-06, -0.258819, -4.26553, 0.103, -1.48, -7.608)
+mesh = SubResource("PlaneMesh_6md5g")
+
+[node name="Node3D6" parent="." instance=ExtResource("19_kjuno")]
+transform = Transform3D(0.201525, 0, 0.201525, 0, 0.4275, 0, -0.201525, 0, 0.201525, 7, 2, 2)
+
+[editable path="Player"]

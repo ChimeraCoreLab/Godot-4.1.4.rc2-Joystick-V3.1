@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://tq1jmh7au7vg"]
+
+[ext_resource type="Texture2D" uid="uid://cchcsht1w4pte" path="res://Nowy folder/TexturesCom_Branches0018_1_alphamasked_S.png" id="1_0k71p"]
+[ext_resource type="Texture2D" uid="uid://ddhc58kgnrovg" path="res://Nowy folder/tileable_tree_bark_texture_by_ftourini-d3l69hz.jpg" id="2_yq1hl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i20s"]
+transparency = 2
+alpha_scissor_threshold = 0.01
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_0k71p")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qyx4u"]
+material = SubResource("StandardMaterial3D_0i20s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3e1a5"]
+albedo_texture = ExtResource("2_yq1hl")
+uv1_scale = Vector3(1, 5.529, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c7qne"]
+material = SubResource("StandardMaterial3D_3e1a5")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, -8.74228e-08, -1, -8.74228e-08, -3.82137e-15, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, -8.74228e-08, -1, -8.74228e-08, -3.82137e-15, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, -0.866025, -3.78552e-08, 0, -4.37114e-08, 1, -0.866025, 0.5, 2.18557e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D4"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, -8.74228e-08, -1, -8.74228e-08, -3.82137e-15, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, 0.707107, 3.09086e-08, 0, -4.37114e-08, 1, 0.707107, 0.707107, 3.09086e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D5"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, -8.74228e-08, -1, -8.74228e-08, -3.82137e-15, -8.74228e-08, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qyx4u")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.145, 0, 0, 0, 0.825, 0, 0, 0, 0.145, 0, -0.34, 0)
+mesh = SubResource("CylinderMesh_c7qne")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgfvb08d7r2u7"]
+
+[ext_resource type="Script" path="res://player/footstep_sound/FootstepSound.gd" id="1"]
+
+[node name="FootstepSound" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

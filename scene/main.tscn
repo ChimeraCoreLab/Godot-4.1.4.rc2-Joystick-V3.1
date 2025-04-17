@@ -1,0 +1,207 @@
+[gd_scene load_steps=19 format=3 uid="uid://xwvqhrmvw5od"]
+
+[ext_resource type="Texture2D" uid="uid://78pehu0r5g6w" path="res://textures/grids/Dark/texture_04.png" id="1_3xv62"]
+[ext_resource type="Script" path="res://script/main.gd" id="1_a5glm"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="5_3182p"]
+[ext_resource type="Texture2D" uid="uid://1t8qkmk14l60" path="res://textures/display/run/pressed.png" id="7_dsqgv"]
+[ext_resource type="Texture2D" uid="uid://d2l3i4upetgdf" path="res://textures/display/jump/normal.png" id="8_f2ggm"]
+[ext_resource type="PackedScene" uid="uid://csbggi6yuhr3q" path="res://scene/enemy.tscn" id="9_frnmj"]
+[ext_resource type="Texture2D" uid="uid://wo5jys3mruns" path="res://textures/display/jump/pressed.png" id="9_sauto"]
+[ext_resource type="PackedScene" uid="uid://cqxxs2uyoubea" path="res://scene/character.tscn" id="10_x1wgx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hog30"]
+load_path = "res://.godot/imported/pressed.png-b97d3a3dcbc3de6b5c284c84c5479ecc.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_sal7p"]
+font_color = Color(0.760784, 0.0392157, 0.0235294, 1)
+outline_size = 2
+outline_color = Color(1, 0.521569, 0.454902, 1)
+
+[sub_resource type="Animation" id="Animation_rqo4c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fovsq"]
+resource_name = "fade_up"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c52af"]
+_data = {
+"RESET": SubResource("Animation_rqo4c"),
+"fade_up": SubResource("Animation_fovsq")
+}
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ua860"]
+vertices = PackedVector3Array(-249.5, 0.5, -249.5, -249.5, 0.5, 249.5, 249.5, 0.5, 249.5, 249.5, 0.5, -249.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6lkm"]
+albedo_texture = ExtResource("1_3xv62")
+refraction_scale = -0.9
+uv1_triplanar = true
+grow_amount = 1.09
+
+[sub_resource type="BoxMesh" id="BoxMesh_qv328"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0r2gl"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Environment" id="Environment_2ouoj"]
+background_mode = 1
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_a5glm")
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ground"]
+transform = Transform3D(-0.803919, -0.515059, 0.29737, 0.331058, 0.0278326, 0.9432, -0.49408, 0.856703, 0.148139, -0.322698, 1.00888, 0.646422)
+light_color = Color(0.992157, 0.992157, 0.992157, 1)
+light_energy = 2.55
+shadow_enabled = true
+shadow_normal_bias = 1.559
+
+[node name="Character" parent="." instance=ExtResource("10_x1wgx")]
+transform = Transform3D(-3.93403e-08, 0, -0.9, 0, 0.9, 0, 0.9, 0, -3.93403e-08, 0, 1.3, 3.8719)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JumpBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2(1912, 640)
+scale = Vector2(0.09, 0.09)
+texture_normal = ExtResource("8_f2ggm")
+texture_pressed = ExtResource("9_sauto")
+
+[node name="RunBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2(136, 392)
+scale = Vector2(0.095, 0.095)
+texture_normal = SubResource("CompressedTexture2D_hog30")
+texture_pressed = ExtResource("7_dsqgv")
+passby_press = true
+
+[node name="Virtual Joystick" parent="UI" instance=ExtResource("5_3182p")]
+layout_mode = 1
+offset_left = 64.0
+offset_top = -325.0
+offset_right = 364.0
+offset_bottom = -25.0
+
+[node name="JoyButton" parent="UI" instance=ExtResource("5_3182p")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.775
+anchor_top = 0.944
+anchor_right = 0.775
+anchor_bottom = 0.944
+offset_left = -8.00006
+offset_top = -295.68
+offset_right = 292.0
+offset_bottom = 4.31995
+use_input_actions = false
+
+[node name="cross_hair" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -1.5
+offset_right = 1.5
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.572549, 0.572549, 0.572549, 0.584314)
+
+[node name="Damage_Counter" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -34.5
+offset_right = -30.0
+offset_bottom = -11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_sal7p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="UI/Damage_Counter"]
+wait_time = 0.8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Damage_Counter"]
+libraries = {
+"": SubResource("AnimationLibrary_c52af")
+}
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+navigation_mesh = SubResource("NavigationMesh_ua860")
+metadata/_edit_lock_ = true
+
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_q6lkm")
+use_collision = true
+size = Vector3(500, 1, 500)
+metadata/_edit_lock_ = true
+
+[node name="Enemys" type="Node3D" parent="."]
+
+[node name="enemy3" parent="Enemys" instance=ExtResource("9_frnmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5797, 1, 9.5416)
+
+[node name="enemy2" parent="Enemys" instance=ExtResource("9_frnmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5797, 1, -0.458424)
+
+[node name="enemy" parent="Enemys" instance=ExtResource("9_frnmj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5797, 1, -9.4584)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(132.756, 0, 0, 0, 0.1, 0, 0, 0, -2.46, 0, 0.0428296, 4.11718)
+mesh = SubResource("BoxMesh_qv328")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0r2gl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2ouoj")
+
+[connection signal="timeout" from="UI/Damage_Counter/Timer" to="." method="_on_timer_timeout"]
